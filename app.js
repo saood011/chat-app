@@ -4,7 +4,10 @@ let server = require("http").createServer(app);
 
 let io = require("socket.io")(server);
 let redis = require("redis");
-let redisClient = redis.createClient(process.env.REDIS_URL);
+let redisClient = redis.createClient(
+  process.env.REDIS_PORT,
+  process.env.REDIS_HOST
+);
 
 var storeMessage = (name, data) => {
   let message = JSON.stringify({ name: name, data: data });
